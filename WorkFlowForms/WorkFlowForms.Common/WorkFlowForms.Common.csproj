@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\WorkFlowForms.Service\WorkFlowForms.Service.csproj" />
+        <!-- 移除這行以打破循環依賴 -->
+        <!-- <ProjectReference Include="..\WorkFlowForms.Service\WorkFlowForms.Service.csproj" /> -->
     </ItemGroup>
 
 </Project>

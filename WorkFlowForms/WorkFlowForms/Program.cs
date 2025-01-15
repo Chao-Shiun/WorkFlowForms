@@ -1,3 +1,6 @@
+using WorkFlowForms.Service;
+using WorkFlowForms.Service.Interface;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -7,6 +10,11 @@ builder.Services.AddSwaggerGen();
 
 // Add controllers
 builder.Services.AddControllers();
+
+
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddScoped<IDocService, DocService>();
 
 var app = builder.Build();
 

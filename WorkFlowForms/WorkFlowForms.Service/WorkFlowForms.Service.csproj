@@ -10,4 +10,12 @@
       <Folder Include="Doc\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="DocX" Version="3.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\WorkFlowForms.Common\WorkFlowForms.Common.csproj" />
+    </ItemGroup>
+
 </Project>
