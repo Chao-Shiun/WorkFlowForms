@@ -22,4 +22,9 @@
       <Folder Include="wwwroot\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\WorkFlowForms.Common\WorkFlowForms.Common.csproj" />
+      <ProjectReference Include="..\WorkFlowForms.Service\WorkFlowForms.Service.csproj" />
+    </ItemGroup>
+
 </Project>
