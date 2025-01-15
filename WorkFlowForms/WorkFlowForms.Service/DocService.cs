@@ -11,7 +11,7 @@ public class DocService : IDocService
     {
         // 使用 AppContext.BaseDirectory 來構建路徑
         string baseDirectory = AppContext.BaseDirectory;
-        string filePath = Path.Combine(baseDirectory, "Doc", "doc1.docx");
+        string filePath = Path.Combine(baseDirectory, "Doc", "系統申請需求確認書.docx");
         
         // 確認檔案是否存在
         if (!File.Exists(filePath))
@@ -23,6 +23,11 @@ public class DocService : IDocService
         using DocX document = DocX.Load(filePath);
         // 根據 Doc1Dto 的內容更新文檔
         // 例如：document.ReplaceText("{Placeholder}", doc1Dto.SomeProperty);
+        document.ReplaceText("{{Year}}", doc1Dto.Year);
+        document.ReplaceText("{{Month}}", doc1Dto.Month);
+        document.ReplaceText("{{Day}}", doc1Dto.Day);
+        document.ReplaceText("{{RequestingUnit}}", doc1Dto.RequestingUnit);
+        document.ReplaceText("{{ContactPerson}}", doc1Dto.ContactPerson);
 
         // 保存更新後的文檔到 MemoryStream
         using MemoryStream stream = new MemoryStream();
