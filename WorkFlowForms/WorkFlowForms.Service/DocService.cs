@@ -28,6 +28,17 @@ public class DocService : IDocService
         document.ReplaceText("{{Day}}", doc1Dto.Day);
         document.ReplaceText("{{RequestingUnit}}", doc1Dto.RequestingUnit);
         document.ReplaceText("{{ContactPerson}}", doc1Dto.ContactPerson);
+        document.ReplaceText("{{ExtensionNumber}}", doc1Dto.ExtensionNumber);
+        document.ReplaceText("{{RelevantDepartments}}", doc1Dto.RelevantDepartments);
+        document.ReplaceText("{{SystemName}}", doc1Dto.SystemName);
+        document.ReplaceText("{{Requirements}}", doc1Dto.Requirements);
+        document.ReplaceText("{{FeatureDevelopmentDescription}}", doc1Dto.FeatureDevelopmentDescription);
+        document.ReplaceText("{{EstimatedWorkingHours}}", doc1Dto.EstimatedWorkingHours);
+        document.ReplaceText("{{EstimatedDeliveryDate}}", doc1Dto.EstimatedDeliveryDate);
+        document.ReplaceText("{{EstimatedGoLiveDate}}", doc1Dto.EstimatedGoLiveDate);
+        document.ReplaceText("{{DevelopmentEvaluator}}", doc1Dto.DevelopmentEvaluator);
+        document.ReplaceText("{{DevelopmentEvaluatorExtensionNumber}}", doc1Dto.DevelopmentEvaluatorExtensionNumber);
+        
 
         // 保存更新後的文檔到 MemoryStream
         using MemoryStream stream = new MemoryStream();
