@@ -1,35 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WorkFlowForms</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>系統表單</title>
+    <link rel="stylesheet" href="./dist/css/styles.css">
 </head>
 <body>
-    <div id="app"></div>
-    <div id="floating-menu">
-        <ul>
-            <li>Menu Item 1
-                <ul>
-                    <li>Sub Item 1.1
-                        <ul>
-                            <li>Sub Sub Item 1.1.1</li>
-                            <li>Sub Sub Item 1.1.2</li>
-                        </ul>
-                    </li>
-                    <li>Sub Item 1.2</li>
-                </ul>
-            </li>
-            <li>Menu Item 2
-                <ul>
-                    <li>Sub Item 2.1</li>
-                    <li>Sub Item 2.2</li>
-                </ul>
-            </li>
-            <li>Menu Item 3</li>
-        </ul>
+    <div class="container">
+        <nav class="sidebar">
+            <ul>
+                <li><a href="#" id="requirementForm">系統申請需求確認書</a></li>
+                <li><a href="#" id="testReport">開發單位系統測試報告書</a></li>
+                <li><a href="#" id="boardChange">換板申請書</a></li>
+            </ul>
+        </nav>
+        <main class="content">
+            <div id="formContainer">
+                <form id="systemRequirementForm" class="hidden">
+                    <h2>系統申請需求確認書</h2>
+                    <div class="form-group">
+                        <label>需求單位</label>
+                        <input type="text" name="requestingUnit" required>
+                    </div>
+                    <div class="form-group">
+                        <label>聯絡人</label>
+                        <input type="text" name="contactPerson" required>
+                        <label>分機</label>
+                        <input type="text" name="extensionNumber">
+                    </div>
+                    <div class="form-group">
+                        <label>相關單位</label>
+                        <input type="text" name="relevantDepartment">
+                    </div>
+                    <div class="form-group">
+                        <label>系統名稱</label>
+                        <input type="text" name="systemName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>系統需求原因</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="reason1" name="reason" value="改進作業流程">
+                            <label for="reason1">改進作業流程</label>
+                            <input type="checkbox" id="reason2" name="reason" value="配合相關作業變更">
+                            <label for="reason2">配合相關作業變更</label>
+                            <input type="checkbox" id="reason3" name="reason" value="配合法令規章辦法修定">
+                            <label for="reason3">配合法令規章辦法修定</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">產生Word文件</button>
+                    </div>
+                </form>
+            </div>
+        </main>
     </div>
-    <script src="./scripts.js"></script>
+    <script src="./dist/js/bundle.js"></script>
 </body>
 </html> 

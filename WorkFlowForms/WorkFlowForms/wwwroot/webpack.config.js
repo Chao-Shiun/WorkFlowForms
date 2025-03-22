@@ -1,18 +1,15 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { VueLoaderPlugin } = require('vue-loader');
 
 module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
 
     return {
-        entry: {
-            main: './src/main.js',
-            styles: './styles.css',
-            scripts: './scripts.js'
-        },
+        entry: './src/js/main.js',
         output: {
-            filename: '[name].bundle.js',
+            filename: 'js/bundle.js',
             path: path.resolve(__dirname, 'dist'),
             clean: true
         },
@@ -65,11 +62,10 @@ module.exports = (env, argv) => {
             ]
         },
         plugins: [
-            new (require('vue-loader/lib/plugin'))(),
+            new VueLoaderPlugin(),
             new HtmlWebpackPlugin({
                 template: './index.html',
-                inject: true,
-                chunks: ['main', 'styles', 'scripts']
+                inject: true
             })
         ]
     };

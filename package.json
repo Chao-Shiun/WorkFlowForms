@@ -1,0 +1,10 @@
+{
+  "name": "workflowforms",
+  "version": "1.0.0",
+  "description": "A SPA for WorkFlowForms using Vue.js",
+  "scripts": {
+    "serve": "cd WorkFlowForms/WorkFlowForms/wwwroot && npm run serve",
+    "build": "cd WorkFlowForms/WorkFlowForms/wwwroot && npm run build",
+    "install-deps": "cd WorkFlowForms/WorkFlowForms/wwwroot && npm install"
+  }
+} 
