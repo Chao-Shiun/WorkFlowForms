@@ -19,6 +19,14 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Update="src\index.html">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
+      <Content Update="src\webpack.config.js">
+        <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
@@ -28,6 +36,10 @@
     <ItemGroup>
       <ProjectReference Include="..\WorkFlowForms.Common\WorkFlowForms.Common.csproj" />
       <ProjectReference Include="..\WorkFlowForms.Service\WorkFlowForms.Service.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="wwwroot\src\js\main.js" />
     </ItemGroup>
 
     <!-- 在建構時執行webpack -->
