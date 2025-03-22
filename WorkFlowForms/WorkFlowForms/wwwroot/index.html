@@ -14,11 +14,9 @@
         .container {
             display: flex;
             height: 100vh;
-            border: 2px solid #000;
         }
         .sidebar {
             width: 20%;
-            border-right: 2px solid #000;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -81,12 +79,8 @@
             opacity: 0.5;
             pointer-events: none;
         }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid #ccc;
+        table, th, td {
+            border: none;
             padding: 8px;
             text-align: left;
         }
@@ -169,7 +163,7 @@
                         <div class="form-section-title">需求評估階段(以下欄位由開發單位填寫)</div>
                         
                         <div class="form-section-title">開發功能項目描述</div>
-                        <textarea class="text-area" name="featureDevelopmentDescription" placeholder="{{FeatureDevelopmentDescription}}"></textarea>
+                        <textarea class="text-area" name="featureDevelopmentDescription" placeholder=""></textarea>
                         
                         <div class="checkbox-group">
                             <input type="checkbox" id="complianceDigitalManagement" name="complianceDigitalManagement" value="本需求應會同數位經營部制定系統規格">
@@ -216,10 +210,10 @@
                                     <input type="text" class="text-input" name="estimatedWorkingHours" placeholder="{{EstimatedWorkingHours}}">
                                 </td>
                                 <td>
-                                    <input type="text" class="text-input datepicker" name="estimatedDeliveryDate" placeholder="{{EstimatedDeliveryDate}}">
+                                    <input type="text" class="text-input datepicker" name="estimatedDeliveryDate" placeholder="">
                                 </td>
                                 <td>
-                                    <input type="text" class="text-input datepicker" name="estimatedGoLiveDate" placeholder="{{EstimatedGoLiveDate}}">
+                                    <input type="text" class="text-input datepicker" name="estimatedGoLiveDate" placeholder="">
                                 </td>
                             </tr>
                         </table>
@@ -290,10 +284,10 @@
                     
                     <div class="form-section">
                         <div class="form-section-title">開發評估人員</div>
-                        <input type="text" class="text-input" name="developmentEvaluator" placeholder="{{DevelopmentEvaluator}}">
+                        <input type="text" class="text-input" name="developmentEvaluator" placeholder="">
                         
                         <div class="form-section-title">分機號碼</div>
-                        <input type="text" class="text-input" name="extensionNumber" placeholder="{{DevelopmentEvaluatorExtension}}">
+                        <input type="text" class="text-input" name="extensionNumber" placeholder="">
                     </div>
                 </form>
             </div>
