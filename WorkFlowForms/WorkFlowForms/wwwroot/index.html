@@ -34,7 +34,7 @@
             display: block;
         }
         .content {
-            width: 80%;
+            width: 90%;
             padding: 20px;
             box-sizing: border-box;
         }
@@ -59,7 +59,7 @@
             margin-right: 15px;
         }
         .text-input {
-            width: 100%;
+            width: 20%;
             margin: 5px 0;
             border-bottom: 1px solid #ccc;
             background-color: #fff;
@@ -87,6 +87,27 @@
         th {
             font-weight: bold;
         }
+        .contact-info {
+            display: flex;
+            margin-top: 20px;
+            gap: 10px;
+            align-items: flex-end;
+        }
+        .contact-info > div {
+            flex: 0 1 auto;
+        }
+        .contact-info .text-input {
+            width: 150px;
+        }
+        .contact-info .extension-input {
+            width: 80px;
+        }
+        table .text-input {
+            width: 100px;
+        }
+        table td {
+            min-width: 120px;
+        }
     </style>
 </head>
 <body>
@@ -101,6 +122,32 @@
         <main class="content">
             <div id="formContainer">
                 <form id="systemRequirementForm" class="hidden">
+                    <div class="form-section">
+                        <div class="form-section-title">需求單位</div>
+                        <input type="text" class="text-input" name="requestingUnit">
+                        
+                        <div class="contact-info">
+                            <div>
+                                <div class="form-section-title">聯絡人</div>
+                                <input type="text" class="text-input" name="contactPerson">
+                            </div>
+                            <div>
+                                <div class="form-section-title">分機</div>
+                                <input type="text" class="text-input extension-input" name="extensionNumber">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div class="form-section-title">相關單位</div>
+                            <input type="text" class="text-input" name="relevantDepartment">
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div class="form-section-title">系統名稱</div>
+                            <input type="text" class="text-input" name="systemName">
+                        </div>
+                    </div>
+
                     <h2>需求單位系統開發暨變更需求概述</h2>
                     
                     <div class="form-section">
@@ -283,11 +330,16 @@
                     </div>
                     
                     <div class="form-section">
-                        <div class="form-section-title">開發評估人員</div>
-                        <input type="text" class="text-input" name="developmentEvaluator" placeholder="">
-                        
-                        <div class="form-section-title">分機號碼</div>
-                        <input type="text" class="text-input" name="extensionNumber" placeholder="">
+                        <div class="contact-info">
+                            <div>
+                                <div class="form-section-title">開發評估人員</div>
+                                <input type="text" class="text-input" name="developmentEvaluator" placeholder="">
+                            </div>
+                            <div>
+                                <div class="form-section-title">分機號碼</div>
+                                <input type="text" class="text-input extension-input" name="evaluatorExtension">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

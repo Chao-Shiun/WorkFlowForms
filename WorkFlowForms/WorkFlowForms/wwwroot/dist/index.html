@@ -101,6 +101,32 @@
         <main class="content">
             <div id="formContainer">
                 <form id="systemRequirementForm" class="hidden">
+                    <div class="form-section">
+                        <div class="form-section-title">需求單位</div>
+                        <input type="text" class="text-input" name="requestingUnit">
+                        
+                        <div style="display: flex; margin-top: 20px;">
+                            <div style="flex: 1;">
+                                <div class="form-section-title">聯絡人</div>
+                                <input type="text" class="text-input" name="contactPerson">
+                            </div>
+                            <div style="flex: 1; margin-left: 20px;">
+                                <div class="form-section-title">分機</div>
+                                <input type="text" class="text-input" name="extensionNumber">
+                            </div>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div class="form-section-title">相關單位</div>
+                            <input type="text" class="text-input" name="relevantDepartment">
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <div class="form-section-title">系統名稱</div>
+                            <input type="text" class="text-input" name="systemName">
+                        </div>
+                    </div>
+
                     <h2>需求單位系統開發暨變更需求概述</h2>
                     
                     <div class="form-section">
@@ -285,9 +311,6 @@
                     <div class="form-section">
                         <div class="form-section-title">開發評估人員</div>
                         <input type="text" class="text-input" name="developmentEvaluator" placeholder="">
-                        
-                        <div class="form-section-title">分機號碼</div>
-                        <input type="text" class="text-input" name="extensionNumber" placeholder="">
                     </div>
                 </form>
             </div>
