@@ -7,24 +7,24 @@ module.exports = (env, argv) => {
     const isProduction = argv.mode === 'production';
 
     return {
-        entry: './src/js/main.js',
+        entry: './index.js',
         output: {
             filename: 'js/bundle.js',
-            path: path.resolve(__dirname, 'dist'),
+            path: path.resolve(__dirname, '../wwwroot/dist'),
             clean: true
         },
         module: {
             rules: [
-                {
-                    test: /\.vue$/,
-                    loader: 'vue-loader'
-                },
                 {
                     test: /\.js$/,
                     exclude: /node_modules/,
                     use: {
                         loader: 'babel-loader'
                     }
+                },
+                {
+                    test: /\.vue$/,
+                    use: 'vue-loader'
                 },
                 {
                     test: /\.css$/,
@@ -36,14 +36,11 @@ module.exports = (env, argv) => {
             ]
         },
         resolve: {
-            alias: {
-                'vue$': 'vue/dist/vue.esm.js'
-            },
-            extensions: ['*', '.js', '.vue', '.json']
+            extensions: ['.js', '.vue', '.json']
         },
         devServer: {
             static: {
-                directory: path.join(__dirname, 'dist')
+                directory: path.join(__dirname, '../wwwroot/dist')
             },
             compress: true,
             port: 9000,
@@ -64,7 +61,8 @@ module.exports = (env, argv) => {
         plugins: [
             new VueLoaderPlugin(),
             new HtmlWebpackPlugin({
-                template: './index.html',
+                template: path.resolve(__dirname, 'index.html'),
+                filename: path.resolve(__dirname, '../wwwroot/index.html'),
                 inject: true
             })
         ]
