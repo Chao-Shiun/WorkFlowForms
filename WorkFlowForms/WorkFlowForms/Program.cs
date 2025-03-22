@@ -1,5 +1,7 @@
 using WorkFlowForms.Service;
 using WorkFlowForms.Service.Interface;
+using Microsoft.Extensions.FileProviders;
+using System.Diagnostics;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +12,6 @@ builder.Services.AddSwaggerGen();
 
 // Add controllers
 builder.Services.AddControllers();
-
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
@@ -30,6 +31,14 @@ app.UseHttpsRedirection();
 // Enable static files
 app.UseStaticFiles();
 
+// 配置额外的静态文件目录，确保可以访问webpack生成的文件
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "dist")),
+    RequestPath = ""
+});
+
 // Enable routing
 app.UseRouting();
 
@@ -38,5 +47,8 @@ app.UseRouting();
 
 // Map controllers
 app.MapControllers();
+
+// 处理SPA路由
+app.MapFallbackToFile("index.html");
 
 app.Run();

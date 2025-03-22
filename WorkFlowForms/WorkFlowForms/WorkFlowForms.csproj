@@ -5,6 +5,7 @@
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+        <SpaRoot>wwwroot\</SpaRoot>
     </PropertyGroup>
 
     <ItemGroup>
@@ -28,5 +29,18 @@
       <ProjectReference Include="..\WorkFlowForms.Common\WorkFlowForms.Common.csproj" />
       <ProjectReference Include="..\WorkFlowForms.Service\WorkFlowForms.Service.csproj" />
     </ItemGroup>
+
+    <!-- 在建構時執行webpack -->
+    <Target Name="RunWebpack" BeforeTargets="Build">
+        <Message Importance="high" Text="正在執行 Webpack..." />
+        <Exec Condition="'$(Configuration)' == 'Debug'" WorkingDirectory="$(SpaRoot)" Command="npm run dev" />
+        <Exec Condition="'$(Configuration)' == 'Release'" WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+    </Target>
+
+    <!-- 在執行時啟動webpack開發伺服器 -->
+    <Target Name="StartWebpackDevServer" BeforeTargets="Run" Condition="'$(Configuration)' == 'Debug'">
+        <Message Importance="high" Text="正在啟動 Webpack 開發伺服器..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run watch" ContinueOnError="true" />
+    </Target>
 
 </Project>
