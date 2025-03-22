@@ -43,8 +43,65 @@
         .hidden {
             display: none;
         }
-        .form-group {
-            margin-bottom: 15px;
+        #systemRequirementForm {
+            width: 100%;
+            background-color: #333;
+            color: white;
+            padding: 15px;
+        }
+        #systemRequirementForm h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #555;
+            padding-bottom: 10px;
+        }
+        .form-section {
+            margin-bottom: 20px;
+        }
+        .form-section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .checkbox-group {
+            margin: 10px 0;
+        }
+        .checkbox-group label {
+            margin-right: 15px;
+        }
+        .text-input {
+            width: 100%;
+            margin: 5px 0;
+            border-bottom: 1px dashed red;
+            background-color: transparent;
+            color: white;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            outline: none;
+        }
+        .text-area {
+            width: 100%;
+            height: 100px;
+            margin-top: 10px;
+            background-color: #444;
+            color: white;
+            border: 1px solid #555;
+        }
+        .disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #555;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            font-weight: bold;
         }
     </style>
 <script defer src="js/bundle.js"></script></head>
@@ -60,27 +117,10 @@
         <main class="content">
             <div id="formContainer">
                 <form id="systemRequirementForm" class="hidden">
-                    <h2>系統申請需求確認書</h2>
-                    <div class="form-group">
-                        <label>需求單位</label>
-                        <input type="text" name="requestingUnit" required>
-                    </div>
-                    <div class="form-group">
-                        <label>聯絡人</label>
-                        <input type="text" name="contactPerson" required>
-                        <label>分機</label>
-                        <input type="text" name="extensionNumber">
-                    </div>
-                    <div class="form-group">
-                        <label>相關單位</label>
-                        <input type="text" name="relevantDepartment">
-                    </div>
-                    <div class="form-group">
-                        <label>系統名稱</label>
-                        <input type="text" name="systemName" required>
-                    </div>
-                    <div class="form-group">
-                        <label>系統需求原因</label>
+                    <h2>需求單位系統開發暨變更需求概述</h2>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">一、系統需求原因：</div>
                         <div class="checkbox-group">
                             <input type="checkbox" id="reason1" name="reason" value="改進作業流程">
                             <label for="reason1">改進作業流程</label>
@@ -88,15 +128,306 @@
                             <label for="reason2">配合相關作業變更</label>
                             <input type="checkbox" id="reason3" name="reason" value="配合法令規章辦法修定">
                             <label for="reason3">配合法令規章辦法修定</label>
+                            <br>
+                            <input type="checkbox" id="reason4" name="reason" value="業務實際需要">
+                            <label for="reason4">業務實際需要</label>
+                            <input type="checkbox" id="reason5" name="reason" value="程式除錯或優化">
+                            <label for="reason5">程式除錯或優化</label>
+                            <input type="checkbox" id="reason6" name="reason" value="其他">
+                            <label for="reason6">其他</label>
+                            <input type="text" class="text-input" style="width: 40%;" name="otherReason">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit">產生Word文件</button>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">二、本需求是否為RPA流程開發</div>
+                        <div class="checkbox-group">
+                            <input type="radio" id="rpaNo" name="isRPA" value="否" checked>
+                            <label for="rpaNo">否(下方免填)</label>
+                            <input type="radio" id="rpaYes" name="isRPA" value="是">
+                            <label for="rpaYes">是，請填寫下方欄位</label>
+                        </div>
+                        
+                        <div class="form-section-title">流程是否涉及個人資料：</div>
+                        <div class="checkbox-group">
+                            <input type="radio" id="personalDataNo" name="hasPersonalData" value="否" checked>
+                            <label for="personalDataNo">否(下方免填)</label>
+                            <input type="radio" id="personalDataYes" name="hasPersonalData" value="是">
+                            <label for="personalDataYes">是</label>
+                        </div>
+                        
+                        <div id="personalDataSection" class="disabled">
+                            <div>如涉及個資，請詳列使用目的及個資欄位(可貼截圖)，並經授法主管同意。</div>
+                            <div class="form-section-title">使用目的：</div>
+                            <input type="text" class="text-input" name="usagePurpose">
+                            
+                            <div class="form-section-title">個資欄位：</div>
+                            <input type="text" class="text-input" name="personalDataFields">
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">三、系統需求說明：</div>
+                        <div class="form-section-title">作業或功能名稱：</div>
+                        <input type="text" class="text-input" name="functionName">
+                        
+                        <div class="form-section-title">說明</div>
+                        <textarea class="text-area" name="description" placeholder="{{Requirements}}"></textarea>
+                    </div>
+
+                    <div class="form-section">
+                        <div class="form-section-title">需求評估階段(以下欄位由開發單位填寫)</div>
+                        
+                        <div class="form-section-title">開發功能項目描述</div>
+                        <textarea class="text-area" name="featureDevelopmentDescription" placeholder="{{FeatureDevelopmentDescription}}"></textarea>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="complianceDigitalManagement" name="complianceDigitalManagement" value="本需求應會同數位經營部制定系統規格">
+                            <label for="complianceDigitalManagement">本需求應會同數位經營部制定系統規格</label>
+                        </div>
+                        
+                        <div>
+                            <label>數位經營部人員</label>
+                            <select class="text-input" name="digitalManagementStaff">
+                                <option value="">請選擇</option>
+                                <option value="數位經營部人員">數位經營部人員</option>
+                                <option value="數位行銷部人員">數位行銷部人員</option>
+                                <option value="資料工程部人員">資料工程部人員</option>
+                            </select>
+                        </div>
+                        
+                        <div class="radio-group">
+                            <input type="radio" id="selfDevelop" name="developmentType" value="自行開發" checked>
+                            <label for="selfDevelop">自行開發</label>
+                            <input type="radio" id="outsource" name="developmentType" value="外包開發">
+                            <label for="outsource">外包開發</label>
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="needOtherDeptAssistance" name="needOtherDeptAssistance" value="本需求需尋求其他單位協助開發">
+                            <label for="needOtherDeptAssistance">本需求需尋求其他單位協助開發</label>
+                        </div>
+                        
+                        <div id="otherDeptAssistanceSection" class="disabled">
+                            <div class="form-section-title">說明：</div>
+                            <input type="text" class="text-input" name="otherDeptAssistanceDescription">
+                        </div>
+                        
+                        <div class="form-section-title">開發單位評估結果</div>
+                        
+                        <table>
+                            <tr>
+                                <th>預估工時</th>
+                                <th>預計交付日</th>
+                                <th>預計上線日</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="text" class="text-input" name="estimatedWorkingHours" placeholder="{{EstimatedWorkingHours}}">
+                                </td>
+                                <td>
+                                    <input type="text" class="text-input datepicker" name="estimatedDeliveryDate" placeholder="{{EstimatedDeliveryDate}}">
+                                </td>
+                                <td>
+                                    <input type="text" class="text-input datepicker" name="estimatedGoLiveDate" placeholder="{{EstimatedGoLiveDate}}">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">安全性評估及可能影響範圍</div>
+                        <div>修改涉及身分識別機制、密碼政策、移除或弱化措核機制、加密機制等、評估會弱化資訊安全機制</div>
+                        
+                        <div class="checkbox-group">
+                            <input type="radio" id="securityNotApplicable" name="securityAssessment" value="不適用" checked>
+                            <label for="securityNotApplicable">不適用</label>
+                            <input type="radio" id="securityNo" name="securityAssessment" value="否">
+                            <label for="securityNo">否</label>
+                            <input type="radio" id="securityYes" name="securityAssessment" value="是">
+                            <label for="securityYes">是，應以附件描述弱化項目並會辦資安部</label>
+                        </div>
+                        
+                        <div class="form-section-title">本需求是否為RPA流程開發</div>
+                        <div class="checkbox-group">
+                            <input type="radio" id="rpaFlowNo" name="isRPAFlow" value="否" checked>
+                            <label for="rpaFlowNo">否(下方免填)</label>
+                            <input type="radio" id="rpaFlowYes" name="isRPAFlow" value="是">
+                            <label for="rpaFlowYes">是，請填寫下方欄位</label>
+                        </div>
+                        
+                        <div id="rpaSection" class="disabled">
+                            <div class="form-section-title">流程是否涉及個資操作</div>
+                            <div class="checkbox-group">
+                                <input type="radio" id="personalDataOperationNo" name="hasPersonalDataOperation" value="否" checked>
+                                <label for="personalDataOperationNo">否(下方免填)</label>
+                                <input type="radio" id="personalDataOperationYes" name="hasPersonalDataOperation" value="是">
+                                <label for="personalDataOperationYes">是，請填寫下方欄位</label>
+                            </div>
+                            
+                            <div id="personalDataOperationSection" class="disabled">
+                                <div class="checkbox-group">
+                                    <input type="checkbox" id="checkFlowNoStorage" name="dataOperation" value="查詢流程，無儲存個資">
+                                    <label for="checkFlowNoStorage">查詢流程，無儲存個資</label>
+                                    <br>
+                                    <input type="checkbox" id="transferToUser" name="dataOperation" value="傳送至使用者指定資料夾">
+                                    <label for="transferToUser">傳送至使用者指定資料夾</label>
+                                    <br>
+                                    <input type="checkbox" id="transferToOtherSystem" name="dataOperation" value="將個資資料傳送至其他系統">
+                                    <label for="transferToOtherSystem">將個資資料傳送至其他系統</label>
+                                    <input type="text" class="text-input" style="width: 40%;" name="otherSystemName">
+                                    <br>
+                                    <input type="checkbox" id="emailIdentified" name="dataOperation" value="以電子郵件傳遞並已去識別化">
+                                    <label for="emailIdentified">以電子郵件傳遞並已去識別化</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-section-title">影響範圍評估</div>
+                        <div>修改是否影響作業流程、操作體驗或整體系統效能</div>
+                        <div class="checkbox-group">
+                            <input type="radio" id="impactNo" name="hasImpact" value="否" checked>
+                            <label for="impactNo">否</label>
+                            <input type="radio" id="impactYes" name="hasImpact" value="是">
+                            <label for="impactYes">是，應以附件描述影響內容</label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">其他單位配合事項</div>
+                        <textarea class="text-area" name="otherDepartmentCooperation"></textarea>
+                    </div>
+                    
+                    <div class="form-section">
+                        <div class="form-section-title">開發評估人員</div>
+                        <input type="text" class="text-input" name="developmentEvaluator" placeholder="{{DevelopmentEvaluator}}">
+                        
+                        <div class="form-section-title">分機號碼</div>
+                        <input type="text" class="text-input" name="extensionNumber" placeholder="{{DevelopmentEvaluatorExtension}}">
                     </div>
                 </form>
             </div>
         </main>
     </div>
     <script src="./dist/js/bundle.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const requirementFormLink = document.getElementById('requirementForm');
+            const testReportLink = document.getElementById('testReport');
+            const boardChangeLink = document.getElementById('boardChange');
+            const systemRequirementForm = document.getElementById('systemRequirementForm');
+            const formContainer = document.getElementById('formContainer');
+            
+            // RPA和個資相關元素
+            const rpaNoRadio = document.getElementById('rpaNo');
+            const rpaYesRadio = document.getElementById('rpaYes');
+            const personalDataNoRadio = document.getElementById('personalDataNo');
+            const personalDataYesRadio = document.getElementById('personalDataYes');
+            const personalDataSection = document.getElementById('personalDataSection');
+            
+            // 新增欄位相關元素
+            const needOtherDeptAssistance = document.getElementById('needOtherDeptAssistance');
+            const otherDeptAssistanceSection = document.getElementById('otherDeptAssistanceSection');
+            const securityNotApplicable = document.getElementById('securityNotApplicable');
+            const securityNo = document.getElementById('securityNo');
+            const securityYes = document.getElementById('securityYes');
+            const rpaFlowNo = document.getElementById('rpaFlowNo');
+            const rpaFlowYes = document.getElementById('rpaFlowYes');
+            const rpaSection = document.getElementById('rpaSection');
+            const personalDataOperationNo = document.getElementById('personalDataOperationNo');
+            const personalDataOperationYes = document.getElementById('personalDataOperationYes');
+            const personalDataOperationSection = document.getElementById('personalDataOperationSection');
+            
+            // 點擊左側選單項目事件
+            requirementFormLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                systemRequirementForm.classList.remove('hidden');
+            });
+            
+            // RPA選項變更事件
+            rpaNoRadio.addEventListener('change', function() {
+                if(this.checked) {
+                    personalDataNoRadio.checked = true;
+                    personalDataSection.classList.add('disabled');
+                }
+            });
+            
+            rpaYesRadio.addEventListener('change', function() {
+                if(this.checked) {
+                    if(personalDataYesRadio.checked) {
+                        personalDataSection.classList.remove('disabled');
+                    }
+                }
+            });
+            
+            // 個人資料選項變更事件
+            personalDataNoRadio.addEventListener('change', function() {
+                if(this.checked) {
+                    personalDataSection.classList.add('disabled');
+                }
+            });
+            
+            personalDataYesRadio.addEventListener('change', function() {
+                if(this.checked && rpaYesRadio.checked) {
+                    personalDataSection.classList.remove('disabled');
+                }
+            });
+            
+            // 其他單位協助開發選項變更事件
+            needOtherDeptAssistance.addEventListener('change', function() {
+                if(this.checked) {
+                    otherDeptAssistanceSection.classList.remove('disabled');
+                } else {
+                    otherDeptAssistanceSection.classList.add('disabled');
+                }
+            });
+            
+            // 安全性評估選項變更事件
+            securityNotApplicable.addEventListener('change', function() {
+                if(this.checked) {
+                    // 如果選擇不適用，則禁用相關欄位
+                }
+            });
+            
+            // RPA流程開發選項變更事件
+            rpaFlowNo.addEventListener('change', function() {
+                if(this.checked) {
+                    rpaSection.classList.add('disabled');
+                }
+            });
+            
+            rpaFlowYes.addEventListener('change', function() {
+                if(this.checked) {
+                    rpaSection.classList.remove('disabled');
+                }
+            });
+            
+            // 個資操作選項變更事件
+            personalDataOperationNo.addEventListener('change', function() {
+                if(this.checked) {
+                    personalDataOperationSection.classList.add('disabled');
+                }
+            });
+            
+            personalDataOperationYes.addEventListener('change', function() {
+                if(this.checked) {
+                    personalDataOperationSection.classList.remove('disabled');
+                }
+            });
+            
+            // 表單提交事件
+            systemRequirementForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const formData = new FormData(this);
+                console.log('表單提交', Object.fromEntries(formData));
+            });
+            
+            // 為日期選擇器設置datepicker
+            const datepickers = document.querySelectorAll('.datepicker');
+            datepickers.forEach(function(picker) {
+                picker.type = 'date';
+            });
+        });
+    </script>
 </body>
 </html> 
