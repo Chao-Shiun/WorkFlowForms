@@ -45,14 +45,19 @@
     <!-- 在建構時執行webpack -->
     <Target Name="RunWebpack" BeforeTargets="Build">
         <Message Importance="high" Text="正在執行 Webpack..." />
-        <Exec Condition="'$(Configuration)' == 'Debug'" WorkingDirectory="$(SpaRoot)" Command="npm run dev" />
         <Exec Condition="'$(Configuration)' == 'Release'" WorkingDirectory="$(SpaRoot)" Command="npm run build" />
     </Target>
 
     <!-- 在執行時啟動webpack開發伺服器 -->
     <Target Name="StartWebpackDevServer" BeforeTargets="Run" Condition="'$(Configuration)' == 'Debug'">
         <Message Importance="high" Text="正在啟動 Webpack 開發伺服器..." />
-        <Exec WorkingDirectory="$(SpaRoot)" Command="npm run watch" ContinueOnError="true" />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="start /B webpack serve --mode development" ContinueOnError="true" />
+    </Target>
+
+    <!-- 在專案關閉時停止webpack開發伺服器 -->
+    <Target Name="StopWebpackDevServer" AfterTargets="Stop">
+        <Message Importance="high" Text="正在停止 Webpack 開發伺服器..." />
+        <Exec WorkingDirectory="$(SpaRoot)" Command="taskkill /F /IM node.exe" ContinueOnError="true" />
     </Target>
 
 </Project>
